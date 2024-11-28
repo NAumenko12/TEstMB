@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="TEstMB.View.EditOrderWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TEstMB.View"
+             mc:Ignorable="d" Width="666" Height="422">
+    <Grid Background="AliceBlue" HorizontalAlignment="Right" Width="666">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Описание проблемы:" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Text="{Binding SelectedЗаявка.Описание_проблемы, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Статус заявки:" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding SelectedЗаявка.Статус_заявки, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Ответственный мастер:" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Мастера}" DisplayMemberPath="ФИО" SelectedValuePath="ID_Пользователя" SelectedValue="{Binding SelectedЗаявка.FK_Мастера}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Комментарий:" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Text="{Binding Комментарий, UpdateSourceTrigger=PropertyChanged}" Width="450"  Grid.Row="3" Grid.Column="1" Margin="39,5,39,0" Height="180" VerticalAlignment="Top"/>
+
+        <Button Content="Сохранить" Command="{Binding SaveCommand}" Grid.Row="6" Grid.Column="1" Margin="131,0,0,35" HorizontalAlignment="Left" Width="133" Height="50" VerticalAlignment="Bottom"/>
+    </Grid>
+
+</UserControl>

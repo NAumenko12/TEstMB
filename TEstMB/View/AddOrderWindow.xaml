@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="TEstMB.View.AddOrderWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TEstMB.View"
+             xmlns:viewmodel="clr-namespace:TEstMB.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:AddOrderViewModel}"
+             mc:Ignorable="d" Width="433" Height="318">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Вид оргтехники:" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Text="{Binding NewЗаявка.Вид_оргтехники, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Модель:" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding NewЗаявка.Модель, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Описание проблемы:" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Text="{Binding NewЗаявка.Описание_проблемы, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Статус заявки:" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Text="{Binding NewЗаявка.Статус_заявки, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Запчасть:" Grid.Row="4" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Запчасти}" DisplayMemberPath="Название" SelectedValuePath="ID_Запчасти" SelectedValue="{Binding NewЗаявка.FK_Запчасти}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Мастер:" Grid.Row="5" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Мастера}" DisplayMemberPath="ФИО" SelectedValuePath="ID_Пользователя" SelectedValue="{Binding NewЗаявка.FK_Мастера}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Клиент:" Grid.Row="6" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Клиенты}" DisplayMemberPath="ФИО" SelectedValuePath="ID_Пользователя" SelectedValue="{Binding NewЗаявка.FK_Заказчика}" Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Комментарий:" Grid.Row="7" Grid.Column="0"/>
+        <TextBox Text="{Binding Комментарий, UpdateSourceTrigger=PropertyChanged}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+
+        <Label Content="Дата окончания:" Grid.Row="8" Grid.Column="0"/>
+        <DatePicker SelectedDate="{Binding NewЗаявка.Дата_окончания, UpdateSourceTrigger=PropertyChanged}" Grid.Row="8" Grid.Column="1" Margin="5"/>
+
+        <Button Content="Сохранить" Command="{Binding SaveCommand}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"/>
+    </Grid>
+</UserControl>

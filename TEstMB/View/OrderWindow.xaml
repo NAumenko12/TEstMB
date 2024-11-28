@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="TEstMB.View.OrderWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TEstMB.View"
+             xmlns:viewmodel="clr-namespace:TEstMB.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:OrderViewModel}"
+             mc:Ignorable="d" Height="450" Width="988">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#FF123456"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#FFA4A7A4" Height="403" Width="985">
+        <Grid Margin="0,10,0,-28" HorizontalAlignment="Center" Width="985">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="380"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox Text="Заявки" Background="#FFA4A7A4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Bold" FontSize="25" HorizontalAlignment="Center" Width="989" Margin="0,0,0,322"/>
+            
+            <ListView x:Name="LWProduct" Margin="0,58,215,10" ItemsSource="{Binding Заявки}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding ID_Заявки}" Header="ID Заявки" Width="80"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Дата_добавления}" Header="Дата добавления" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Вид_оргтехники}" Header="Вид оргтехники" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Модель}" Header="Модель" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Описание_проблемы}" Header="Описание проблемы" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Статус_заявки}" Header="Статус заявки" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Дата_окончания}" Header="Дата окончания" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Запчасти.Название}" Header="Название запчасти" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Пользователи.ФИО}" Header="ФИО мастера" Width="120"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Пользователи1.ФИО}" Header="ФИО заказчика" Width="120"/>
+                        <GridViewColumn Header="Редактировать" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Редактировать" Command="{Binding DataContext.EditOrderCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Добавить Заявку" HorizontalAlignment="Left" Width="135" Background="#FF849C74" Margin="812,63,0,287" Command="{Binding AddOrderCommand}"/>
+            <Button Content="Выйти" HorizontalAlignment="Left" Width="100" Background="IndianRed" Margin="830,340,0,10" Command="{Binding GoHomeNavigateCommand}"/>
+            <Button Content="Статистика" HorizontalAlignment="Left" Width="135" Background="IndianRed" Margin="812,145,0,205" Command="{Binding StatisticNavigateCommand  }">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
